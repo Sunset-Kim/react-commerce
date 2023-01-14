@@ -3028,7 +3028,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prettier@npm:^2.1.5":
+"@types/prettier@npm:^2, @types/prettier@npm:^2.1.5":
   version: 2.7.2
   resolution: "@types/prettier@npm:2.7.2"
   checksum: b47d76a5252265f8d25dd2fe2a5a61dc43ba0e6a96ffdd00c594cb4fd74c1982c2e346497e3472805d97915407a09423804cc2110a0b8e1b22cffcab246479b7
@@ -10929,6 +10929,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier-plugin-tailwindcss@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "prettier-plugin-tailwindcss@npm:0.2.1"
+  peerDependencies:
+    prettier: ">=2.2.0"
+  checksum: 5a04b26f50baea552aaff938b6413bf66d0050c3ca5a0d5bc432a7efc8f8e4ba194a23b1aabd4d39d36228afaf368ba2bce24ebb87f4972459a3679eff6942e8
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^2.8.3":
+  version: 2.8.3
+  resolution: "prettier@npm:2.8.3"
+  bin:
+    prettier: bin-prettier.js
+  checksum: 92f2ceb522d454370e02082aa74ad27388672f7cee8975028b59517c069fe643bdc73e322675c8faf2ff173d7a626d1a6389f26b474000308e793aa25fff46e5
+  languageName: node
+  linkType: hard
+
 "pretty-bytes@npm:^5.3.0, pretty-bytes@npm:^5.4.1":
   version: 5.6.0
   resolution: "pretty-bytes@npm:5.6.0"
@@ -12006,6 +12024,7 @@ __metadata:
     "@types/eslint": ^8
     "@types/jest": ^27.0.1
     "@types/node": ^16.7.13
+    "@types/prettier": ^2
     "@types/react": ^18.0.0
     "@types/react-dom": ^18.0.0
     "@types/testing-library__jest-dom": ^5
@@ -12016,9 +12035,12 @@ __metadata:
     eslint-config-react-app: ^7.0.1
     eslint-plugin-react: latest
     husky: ^8.0.0
+    prettier: ^2.8.3
+    prettier-plugin-tailwindcss: ^0.2.1
     react: ^18.2.0
     react-dom: ^18.2.0
     react-scripts: 5.0.1
+    tailwindcss: ^3.2.4
     typescript: ^4.4.2
     web-vitals: ^2.1.0
   languageName: unknown
@@ -12587,7 +12609,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:^3.0.2":
+"tailwindcss@npm:^3.0.2, tailwindcss@npm:^3.2.4":
   version: 3.2.4
   resolution: "tailwindcss@npm:3.2.4"
   dependencies:
