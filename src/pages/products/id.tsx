@@ -1,20 +1,21 @@
-import { IProductDetail } from "@/types/products.type";
+import { IProduct, useProduct } from "@/features/products";
 import { getValidParam } from "@/utils/getVaildPram";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export default function ProductDetail() {
+  const { productService } = useProduct();
+
   const param = useParams();
-  const [product, setProduct] = useState<IProductDetail>();
+  const [product, setProduct] = useState<IProduct>();
   const id = getValidParam({ param, field: "id" });
 
   useEffect(() => {
-    if (id) {
-      fetch("/data/product_1.json")
-        .then((res) => res.json())
-        .then((data) => setProduct(data))
-        .catch(console.log);
-    }
+    if (id === undefined) return;
+
+    productService
+      .getProduct({ id })
+      .then((res) => setProduct(res as IProduct));
   }, []);
 
   if (product === undefined) {
@@ -26,7 +27,6 @@ export default function ProductDetail() {
       <div>{product.brand}</div>
       <div>{product.name}</div>
       <div>{product.image}</div>
-      <div>{product.price}</div>
     </div>
   );
 }

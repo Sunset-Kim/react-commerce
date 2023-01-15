@@ -6,5 +6,13 @@
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "eslint.nodePath": ".yarn/sdks",
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.js"
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  "todohighlight.keywords": [
+    {
+      "text": "MOCK:",
+      "color": "white",
+      "backgroundColor": "dodgerblue",
+      "overviewRulerColor": "grey"
+    }
+  ]
 }

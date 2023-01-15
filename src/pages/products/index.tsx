@@ -1,15 +1,21 @@
-import { IProduct } from "@/types/products.type";
+import { useProduct } from "@/features/products/service/products.context";
+import { IProduct } from "@/features/products/types/products.type";
+import debug from "@/utils/debug";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+const log = debug("Page | products :");
+
 export default function Products() {
+  const { productService } = useProduct();
+
   const [products, setProducts] = useState<IProduct[]>();
 
   useEffect(() => {
-    fetch("/data/products.json")
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((e) => console.log(e));
+    productService
+      .getProducts()
+      .then((data) => setProducts(data as IProduct[]))
+      .catch((err) => log(err));
   }, []);
 
   return (
