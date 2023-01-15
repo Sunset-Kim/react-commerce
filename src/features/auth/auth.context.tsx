@@ -1,4 +1,4 @@
-import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
+import { useFirebaseAuth } from "@/features/auth/use-firebase-auth";
 import { createContext, PropsWithChildren, useContext, useEffect } from "react";
 import { User } from "firebase/auth";
 

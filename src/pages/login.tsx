@@ -1,4 +1,4 @@
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/features/auth/auth.context";
 
 export default function Login() {
   const { user, signInWithGoogle, logout } = useAuth();

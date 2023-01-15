@@ -6,8 +6,8 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import Firebase from "@/services/common/firebase";
 import debug from "@/utils/debug";
+import { Firebase } from "@/features/common/firebase";
 
 const log = debug("hook|useFirebaseAuth ::");
 const auth = Firebase.getInstance().FireAuth;

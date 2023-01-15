@@ -6,7 +6,7 @@ import APP_CONFIG from "@/config";
 
 const log = debug("Firebase|client");
 
-export default class Firebase {
+export class Firebase {
   private static _instance: Firebase;
   private firestore!: Firestore;
   private auth!: Auth;
