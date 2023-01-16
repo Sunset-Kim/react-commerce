@@ -1,3 +1,4 @@
+import ProductList from "@/features/products/product-list/prodcut-list.component";
 import { useProduct } from "@/features/products/service/products.context";
 import { IProduct } from "@/features/products/types/products.type";
 import debug from "@/utils/debug";
@@ -18,19 +19,13 @@ export default function Products() {
       .catch((err) => log(err));
   }, []);
 
+  if (products === undefined) {
+    return <div>아이템이 없습니다</div>;
+  }
+
   return (
     <div className="container mx-auto">
-      <ul className="grid grid-cols-3 gap-2">
-        {products?.map((item) => (
-          <Link
-            key={item.image}
-            to={"/products/1"}
-          >
-            <div className="rounded-md bg-slate-200 py-28 px-20"></div>
-            <p>{item.name}</p>
-          </Link>
-        ))}
-      </ul>
+      <ProductList list={products} />
     </div>
   );
 }

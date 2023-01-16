@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { BrowserRouter, RouterProvider } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+import { GlobalStyles } from "twin.macro";
 import reportWebVitals from "./reportWebVitals";
 import router from "./routes/router";
 import { AuthProvider } from "./features/auth/auth.context";
@@ -11,6 +12,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <GlobalStyles />
     <AuthProvider>
       <RouterProvider router={router} />
     </AuthProvider>
