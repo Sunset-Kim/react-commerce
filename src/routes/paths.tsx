@@ -1,10 +1,13 @@
-import Carts from "@/pages/carts";
+import Carts from "@/pages/my/carts";
 import HomePage from "@/pages/home";
 import Login from "@/pages/login";
 import Products from "@/pages/products";
 import ProductDetail from "@/pages/products/id";
 import Root from "@/pages/root";
 import { RouteObject } from "react-router-dom";
+import My from "@/pages/my";
+import MyHome from "@/pages/my/my-home";
+import Profile from "@/pages/my/profile";
 
 const paths: RouteObject[] = [
   {
@@ -26,8 +29,22 @@ const paths: RouteObject[] = [
         element: <ProductDetail />,
       },
       {
-        path: "/carts",
-        element: <Carts />,
+        path: "/my",
+        element: <My />,
+        children: [
+          {
+            index: true,
+            element: <MyHome />,
+          },
+          {
+            path: "cart",
+            element: <Carts />,
+          },
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+        ],
       },
     ],
   },

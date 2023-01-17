@@ -4,7 +4,7 @@ import Text from "./text";
 
 export default function header() {
   return (
-    <div className="mx-auto px-20pxr md:px-40pxr">
+    <div className="mx-auto px-20pxr xl:px-40pxr">
       <div className="py-1">
         <ul className="flex justify-end gap-2">
           <li>고객센터</li>
