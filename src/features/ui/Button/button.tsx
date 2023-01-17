@@ -2,9 +2,9 @@
 import { Color } from "@/styles/bg-color";
 import { PropsWithChildren } from "react";
 import tw, { TwStyle } from "twin.macro";
-import { UIProps } from "./ui.type";
+import { UIProps } from "../ui.type";
 
-interface ButtonProps extends UIProps<HTMLButtonElement> {
+export interface ButtonProps extends UIProps<HTMLButtonElement> {
   variants?: Variants;
   color?: Color;
 }
@@ -29,6 +29,7 @@ export default function Button({
   color = "sky",
   sx,
   children,
+  ...props
 }: PropsWithChildren<ButtonProps>) {
   return (
     <button
@@ -38,6 +39,7 @@ export default function Button({
         color && colorStyle[color],
         sx,
       ]}
+      {...props}
     >
       {children}
     </button>

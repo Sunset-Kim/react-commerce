@@ -11,6 +11,7 @@ export default function HStack({
     <Stack
       direction={direction}
       isDivder={isDivder}
+      sx={sx}
       {...props}
     >
       {children}

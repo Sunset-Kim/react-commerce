@@ -1,14 +1,17 @@
 /** @jsxImportSource @emotion/react */
-import { HTMLAttributes, PropsWithChildren } from "react";
+import { ElementType, HTMLAttributes, PropsWithChildren } from "react";
 import tw, { TwStyle } from "twin.macro";
+import styled from "@emotion/styled";
 
 type Size = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 type Weight = "300" | "400" | "500" | "600" | "700" | "800" | "900";
 
+const StyledText = styled.p``;
 interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
   size?: Size;
   weight?: Weight;
   sx?: TwStyle;
+  as?: ElementType<any>;
 }
 
 const sizeStyle: { [size in Size]: TwStyle } = {
@@ -35,6 +38,14 @@ export default function Text({
   weight = "400",
   children,
   sx,
+  as,
 }: PropsWithChildren<TextProps>) {
-  return <p css={[sizeStyle[size], fontWeightStyle[weight], sx]}>{children}</p>;
+  return (
+    <StyledText
+      as={as}
+      css={[sizeStyle[size], fontWeightStyle[weight], sx]}
+    >
+      {children}
+    </StyledText>
+  );
 }
