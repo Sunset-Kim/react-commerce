@@ -1,7 +1,7 @@
 import CartClientService, { AuthError } from "./cart.client.service";
 import { cartCached } from "./query";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import FireBaseAuthModel from "../auth/auth.model";
+import FireBaseAuthService from "../auth/auth.client.service";
 import { Firebase } from "../common/firebase";
 import { CartClient, MockCartClient } from "./cart.model";
 import { IProduct } from "../products";
@@ -11,12 +11,12 @@ export const useCart = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const auth = FireBaseAuthModel.getInstance();
+  const auth = FireBaseAuthService.getInstance();
   // FIXME: MOCK CART
   const cartClient = new CartClient(Firebase.getInstance().FireStore);
 
-  const mockCartClient = new MockCartClient();
-  const cartService = new CartClientService(mockCartClient, auth);
+  // const mockCartClient = new MockCartClient();
+  const cartService = new CartClientService(cartClient, auth);
 
   const result = useQuery(cartCached.getCartAll, () => cartService.getCart());
   const onError = (err: unknown) => {

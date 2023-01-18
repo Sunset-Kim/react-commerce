@@ -27,7 +27,7 @@ export default function Carts() {
             key={product.image}
             product={product}
             onDelete={() => {
-              deleteCart(product.image);
+              deleteCart(product.name);
             }}
           />
         ))}

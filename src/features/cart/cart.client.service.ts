@@ -1,5 +1,5 @@
 import { IProduct } from "@/features/products";
-import { AuthModel } from "../auth/auth.model";
+import { AuthService } from "../auth/auth.client.service";
 import CartModel from "./cart.model";
 export class AuthError extends Error {
   constructor(message: string) {
@@ -10,9 +10,9 @@ export class AuthError extends Error {
 
 export default class CartClientService {
   private _client: CartModel;
-  private _auth: AuthModel;
+  private _auth: AuthService;
 
-  constructor(client: CartModel, auth: AuthModel) {
+  constructor(client: CartModel, auth: AuthService) {
     this._client = client;
     this._auth = auth;
   }
@@ -25,17 +25,17 @@ export default class CartClientService {
   }
 
   async getCart() {
-    const id = this.getUserId();
-    return this._client.findAll({ id });
+    const uid = this.getUserId();
+    return this._client.findAll({ uid });
   }
 
   async addCart(product: IProduct) {
-    const id = this.getUserId();
-    return this._client.add({ id, product });
+    const uid = this.getUserId();
+    return this._client.add({ uid, product });
   }
 
   async deleteCart(productId: string) {
-    const id = this.getUserId();
-    return this._client.delete({ id, productId });
+    const uid = this.getUserId();
+    return this._client.delete({ uid, productId });
   }
 }
