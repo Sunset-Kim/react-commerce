@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { User, onAuthStateChanged } from "firebase/auth";
 import debug from "@/utils/debug";
-import AuthModel, { IUser } from "./auth.model";
-import FireBaseAuthModel from "./auth.model";
+import AuthModel, { IUser } from "./auth.client.service";
+import FireBaseAuthService from "./auth.client.service";
 import { Firebase } from "../common/firebase";
 
 const log = debug("hook|useFirebaseAuth ::");
 
 export const useFirebaseAuth = () => {
-  const authService = FireBaseAuthModel.getInstance();
+  const authService = FireBaseAuthService.getInstance();
   const [user, setUser] = useState<IUser | null>(authService.user);
 
   const updateUser = useCallback((user: IUser | null) => {

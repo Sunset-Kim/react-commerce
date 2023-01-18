@@ -1,6 +1,6 @@
 import { useFirebaseAuth } from "@/features/auth/use-firebase-auth";
 import { createContext, PropsWithChildren, useContext, useEffect } from "react";
-import type { IUser } from "./auth.model";
+import type { IUser } from "./auth.client.service";
 
 interface IAuthContext {
   user: IUser | null;
