@@ -1,25 +1,24 @@
-import { useEffect, useState } from "react";
-import {
-  User,
-  onAuthStateChanged,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
+import { useCallback, useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 import debug from "@/utils/debug";
-import { Firebase } from "@/features/common/firebase";
+import AuthModel, { IUser } from "./auth.client.service";
+import FireBaseAuthService from "./auth.client.service";
 
 const log = debug("hook|useFirebaseAuth ::");
-const auth = Firebase.getInstance().FireAuth;
-const provider = new GoogleAuthProvider();
 
 export const useFirebaseAuth = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const authService = FireBaseAuthService.getInstance();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [user, setUser] = useState<IUser | null>(authService.user);
+
+  const updateUser = useCallback((user: IUser | null) => {
+    authService.user = user;
+    setUser(user);
+  }, []);
 
   async function signInWithGoogle() {
     try {
-      const result = await signInWithPopup(auth, provider);
-      log(result);
+      await authService.signInWithGoogle();
     } catch (error) {
       log(error);
     }
@@ -27,20 +26,21 @@ export const useFirebaseAuth = () => {
 
   async function logout() {
     try {
-      await signOut(auth);
-      setUser(null);
+      await authService.signOut();
     } catch (error) {
       log(error);
     }
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(authService.auth, (user) => {
+      setLoading(true);
       if (user) {
-        setUser(user);
+        updateUser(AuthModel.convertUserFromFirebase(user));
       } else {
-        setUser(null);
+        updateUser(null);
       }
+      setLoading(false);
     });
 
     return () => {
@@ -49,6 +49,7 @@ export const useFirebaseAuth = () => {
   }, []);
 
   return {
+    loading,
     user,
     signInWithGoogle,
     logout,

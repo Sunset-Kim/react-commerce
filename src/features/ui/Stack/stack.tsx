@@ -43,7 +43,11 @@ export default function Stack({
 
   return (
     <div
-      css={[tw`flex`, direction === "column" ? tw`flex-col` : tw`flex-row`, sx]}
+      css={[
+        tw`flex w-full`,
+        direction === "column" ? tw`flex-col` : tw`flex-row`,
+        sx,
+      ]}
     >
       {clones}
     </div>

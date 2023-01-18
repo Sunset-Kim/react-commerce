@@ -2,7 +2,7 @@
 import tw from "twin.macro";
 
 import { IProduct, useProduct } from "@/features/products";
-import Button from "@/features/ui/button";
+import Button from "@/features/ui/Button/button";
 import { Card } from "@/features/ui/Card";
 import Group from "@/features/ui/Group/group";
 import Stack from "@/features/ui/Stack/stack";
@@ -11,6 +11,7 @@ import { getValidParam } from "@/utils/getVaildPram";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import HStack from "@/features/ui/Stack/h-stack";
+import SaleButton from "@/features/ui/Button/sale-button";
 
 export default function ProductDetail() {
   const { productService } = useProduct();
@@ -53,49 +54,14 @@ export default function ProductDetail() {
         <div>사이즈</div>
         <div>최근거래가</div>
         <Stack sx={tw`gap-2 md:flex-row mb-4`}>
-          <Button
-            sx={tw`justify-start rounded-2xl p-0`}
-            variants="primary"
-            color="green"
-          >
-            <HStack isDivder>
-              <div className="flex h-full w-full items-center justify-center px-2">
-                <Text
-                  weight="700"
-                  size="xl"
-                >
-                  구매
-                </Text>
-              </div>
-
-              <div className="px-2 py-2 text-left">
-                <p>165,000원</p>
-                <Text size="xs">즉시구매가</Text>{" "}
-              </div>
-            </HStack>
-          </Button>
-
-          <Button
-            sx={tw`justify-start rounded-2xl p-0`}
-            variants="primary"
-            color="red"
-          >
-            <HStack isDivder>
-              <div className="flex h-full w-full items-center justify-center px-2">
-                <Text
-                  weight="700"
-                  size="xl"
-                >
-                  판매
-                </Text>
-              </div>
-
-              <div className="px-2 py-2 text-left">
-                <p>165,000원</p>
-                <Text size="xs">즉시구매가</Text>
-              </div>
-            </HStack>
-          </Button>
+          <SaleButton
+            type="buy"
+            price={165_000}
+          />
+          <SaleButton
+            type="sell"
+            price={165_000}
+          />
         </Stack>
 
         <Button

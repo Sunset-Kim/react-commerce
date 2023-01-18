@@ -1,9 +1,20 @@
 import { useAuth } from "@/features/auth/auth.context";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const { state } = useLocation();
   const { user, signInWithGoogle, logout } = useAuth();
+  const path = state?.path ?? "/";
 
-  console.log(user);
+  if (user) {
+    return (
+      <Navigate
+        to={path}
+        replace
+      />
+    );
+  }
+
   return (
     <div>
       <input type="text" />

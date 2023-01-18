@@ -1,4 +1,6 @@
+import { useCart } from "@/features/cart/use-cart";
 import { formatCurrency } from "@/features/fomatter";
+import Button from "@/features/ui/Button/button";
 import { Card } from "@/features/ui/Card";
 import { Link } from "react-router-dom";
 import { Category, IProduct } from "../types";
@@ -15,6 +17,7 @@ function getRandomBgColor() {
 
 export default function ProductItem({ item }: ProductItemProps) {
   const { name, brand, category, image, price } = item;
+  const { addCart } = useCart();
   return (
     <li>
       <Link to={"/products/1"}>
@@ -36,6 +39,12 @@ export default function ProductItem({ item }: ProductItemProps) {
         <div>{formatCurrency(price)}</div>
         <div>{category}</div>
       </Link>
+      <Button
+        color="green"
+        onClick={() => addCart(item)}
+      >
+        카트로
+      </Button>
     </li>
   );
 }
