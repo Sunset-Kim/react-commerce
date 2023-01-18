@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
-import {
-  User,
-  onAuthStateChanged,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
+import { useCallback, useEffect, useState } from "react";
+import { User, onAuthStateChanged } from "firebase/auth";
 import debug from "@/utils/debug";
-import { Firebase } from "@/features/common/firebase";
+import AuthModel, { IUser } from "./auth.model";
+import FireBaseAuthModel from "./auth.model";
+import { Firebase } from "../common/firebase";
 
 const log = debug("hook|useFirebaseAuth ::");
-const auth = Firebase.getInstance().FireAuth;
-const provider = new GoogleAuthProvider();
 
 export const useFirebaseAuth = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const authService = FireBaseAuthModel.getInstance();
+  const [user, setUser] = useState<IUser | null>(authService.user);
+
+  const updateUser = useCallback((user: IUser | null) => {
+    authService.user = user;
+    setUser(user);
+  }, []);
 
   async function signInWithGoogle() {
     try {
-      const result = await signInWithPopup(auth, provider);
+      const result = authService.signInWithGoogle();
       log(result);
     } catch (error) {
       log(error);
@@ -27,19 +27,18 @@ export const useFirebaseAuth = () => {
 
   async function logout() {
     try {
-      await signOut(auth);
-      setUser(null);
+      await authService.signOut();
     } catch (error) {
       log(error);
     }
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(authService.auth, (user) => {
       if (user) {
-        setUser(user);
+        updateUser(AuthModel.convertUserFromFirebase(user));
       } else {
-        setUser(null);
+        updateUser(null);
       }
     });
 
