@@ -1,22 +1,13 @@
+import tw from "twin.macro";
 import CartItem from "@/features/cart/cart-item";
 import CartList from "@/features/cart/cart-list";
-import { IProduct, useProduct } from "@/features/products";
+import { useCart } from "@/features/cart/use-cart";
 import Text from "@/features/ui/text";
-import { useEffect, useState } from "react";
-import tw from "twin.macro";
 
 export default function Carts() {
-  const { productService } = useProduct();
-  const [carts, setCarts] = useState<IProduct[]>();
+  const { data: carts, deleteCart } = useCart();
 
-  useEffect(() => {
-    productService
-      .getProducts()
-      .then((data) => setCarts(data as IProduct[]))
-      .catch();
-  }, []);
-
-  if (carts === undefined) {
+  if (carts === undefined || carts.length === 0) {
     return <>상품이 없습니다</>;
   }
 
@@ -35,7 +26,9 @@ export default function Carts() {
           <CartItem
             key={product.image}
             product={product}
-            onDelete={() => {}}
+            onDelete={() => {
+              deleteCart(product.image);
+            }}
           />
         ))}
       </CartList>

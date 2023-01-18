@@ -3,7 +3,6 @@ import { useProduct } from "@/features/products/service/products.context";
 import { IProduct } from "@/features/products/types/products.type";
 import debug from "@/utils/debug";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 const log = debug("Page | products :");
 
