@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
-import { User, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import debug from "@/utils/debug";
 import AuthModel, { IUser } from "./auth.client.service";
 import FireBaseAuthService from "./auth.client.service";
-import { Firebase } from "../common/firebase";
 
 const log = debug("hook|useFirebaseAuth ::");
 
 export const useFirebaseAuth = () => {
   const authService = FireBaseAuthService.getInstance();
+  const [loading, setLoading] = useState<boolean>(true);
   const [user, setUser] = useState<IUser | null>(authService.user);
 
   const updateUser = useCallback((user: IUser | null) => {
@@ -18,8 +18,7 @@ export const useFirebaseAuth = () => {
 
   async function signInWithGoogle() {
     try {
-      const result = authService.signInWithGoogle();
-      log(result);
+      await authService.signInWithGoogle();
     } catch (error) {
       log(error);
     }
@@ -35,11 +34,13 @@ export const useFirebaseAuth = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(authService.auth, (user) => {
+      setLoading(true);
       if (user) {
         updateUser(AuthModel.convertUserFromFirebase(user));
       } else {
         updateUser(null);
       }
+      setLoading(false);
     });
 
     return () => {
@@ -48,6 +49,7 @@ export const useFirebaseAuth = () => {
   }, []);
 
   return {
+    loading,
     user,
     signInWithGoogle,
     logout,

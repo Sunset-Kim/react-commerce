@@ -4,12 +4,14 @@ import type { IUser } from "./auth.client.service";
 
 interface IAuthContext {
   user: IUser | null;
+  loading: boolean;
   signInWithGoogle: () => void;
   logout: () => void;
 }
 
 export const AuthContext = createContext<IAuthContext>({
   user: null,
+  loading: true,
   signInWithGoogle: () => {},
   logout: () => {},
 });

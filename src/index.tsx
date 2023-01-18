@@ -15,6 +15,7 @@ const root = ReactDOM.createRoot(
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      suspense: true,
       refetchOnWindowFocus: false,
       refetchInterval: false,
       retry: 2,

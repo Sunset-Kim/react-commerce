@@ -12,11 +12,11 @@ export const useCart = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const auth = FireBaseAuthService.getInstance();
-  // FIXME: MOCK CART
-  const cartClient = new CartClient(Firebase.getInstance().FireStore);
+  // MOCK: MOCK CART
+  // const cartClient = new CartClient(Firebase.getInstance().FireStore);
 
-  // const mockCartClient = new MockCartClient();
-  const cartService = new CartClientService(cartClient, auth);
+  const mockCartClient = new MockCartClient();
+  const cartService = new CartClientService(mockCartClient, auth);
 
   const result = useQuery(cartCached.getCartAll, () => cartService.getCart());
   const onError = (err: unknown) => {
