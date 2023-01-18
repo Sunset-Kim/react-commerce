@@ -8,6 +8,7 @@ import { RouteObject } from "react-router-dom";
 import My from "@/pages/my";
 import MyHome from "@/pages/my/my-home";
 import Profile from "@/pages/my/profile";
+import PrivateRoute from "./private-route";
 
 const paths: RouteObject[] = [
   {
@@ -30,7 +31,11 @@ const paths: RouteObject[] = [
       },
       {
         path: "/my",
-        element: <My />,
+        element: (
+          <PrivateRoute>
+            <My />
+          </PrivateRoute>
+        ),
         children: [
           {
             index: true,
