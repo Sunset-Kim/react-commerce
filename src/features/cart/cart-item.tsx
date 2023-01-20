@@ -34,7 +34,7 @@ export default function CartItem(props: CartItem) {
 
       <Stack sx={tw`items-end grow-0 shrink-0 w-185pxr`}>
         <SaleButton
-          type="buy"
+          role="buy"
           sx={tw`mb-2`}
           price={price}
         />

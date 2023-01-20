@@ -6,17 +6,17 @@ import Text from "../text";
 import Button, { ButtonProps } from "./button";
 
 interface SaleButtonProps extends ButtonProps {
-  type: "buy" | "sell";
+  role: "buy" | "sell";
   price: number;
 }
 
 export default function SaleButton({
-  type,
+  role,
   price,
   sx,
   ...props
 }: SaleButtonProps) {
-  const isBuy = type === "buy";
+  const isBuy = role === "buy";
 
   return (
     <Button

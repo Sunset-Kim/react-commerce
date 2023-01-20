@@ -1,1 +1,1 @@
-export * from "./ui.type";
+export * from "./types/common.type";
