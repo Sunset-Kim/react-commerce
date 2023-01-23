@@ -11,3 +11,24 @@ declare namespace NodeJS {
     REACT_APP_FIREBASE_APPID: string;
   }
 }
+
+type AddressType = "R" | "J";
+interface PostData {
+  address: string;
+  addressType: AddressType;
+  userSelectedType: AddressType;
+  roadAddress: string;
+  roadnameCode: number;
+}
+
+interface Window {
+  daum: {
+    Postcode: new ({
+      oncomplete,
+    }: {
+      oncomplete: (data: PostData) => void;
+    }) => {
+      open: () => void;
+    };
+  };
+}

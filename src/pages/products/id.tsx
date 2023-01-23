@@ -55,11 +55,11 @@ export default function ProductDetail() {
         <div>최근거래가</div>
         <Stack sx={tw`gap-2 md:flex-row mb-4`}>
           <SaleButton
-            type="buy"
+            role="buy"
             price={165_000}
           />
           <SaleButton
-            type="sell"
+            role="sell"
             price={165_000}
           />
         </Stack>

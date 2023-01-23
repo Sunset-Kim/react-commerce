@@ -2,7 +2,7 @@
 import { PropsWithChildren } from "react";
 import { cloneElement, Children } from "react";
 import tw, { TwStyle } from "twin.macro";
-import { UIProps } from "../ui.type";
+import { UIProps } from "../types/common.type";
 import GroupItem from "./group-item";
 
 type Align = "center" | "start" | "end";

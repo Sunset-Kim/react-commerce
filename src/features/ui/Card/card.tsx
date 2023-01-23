@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import tw from "twin.macro";
 import { PropsWithChildren } from "react";
-import { UIProps } from "../ui.type";
+import { UIProps } from "../types/common.type";
 
 export const Card = ({ sx, children }: PropsWithChildren<UIProps>) => {
   return (

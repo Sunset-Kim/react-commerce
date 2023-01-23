@@ -24,6 +24,8 @@ module.exports = {
     "@typescript-eslint/no-var-requires": "0",
     "@typescript-eslint/no-empty-function": "0",
     "react/no-unknown-property": "0",
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/ban-ts-comment": 0,
   },
   settings: {
     react: {
