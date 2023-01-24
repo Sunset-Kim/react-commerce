@@ -21,6 +21,7 @@ export interface ButtonProps
 }
 
 const buttonStyle = tw`px-4 py-2 rounded w-full flex justify-center items-center outline-0 hover:brightness-110 focus:ring-2 focus:ring-offset-2 transition-colors`;
+const disabledStyle = tw`bg-transparent border-gray-400 border-1 text-black pointer-events-none`;
 
 const variantsStyle: { [variants in ButtonVariants]: TwStyle } = {
   primary: tw`text-white`,
@@ -44,6 +45,7 @@ export default function Button({
   color = "sky",
   sx,
   children,
+  disabled,
   ...props
 }: PropsWithChildren<ButtonProps>) {
   return (
@@ -53,8 +55,10 @@ export default function Button({
         variants === "primary" && colorStyle[color],
         variants === "outlined" && outlineColorStyle[color],
         variantsStyle[variants],
+        disabled && disabledStyle,
         sx,
       ]}
+      disabled={disabled}
       {...props}
     >
       {children}
