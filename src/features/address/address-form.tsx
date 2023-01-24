@@ -3,13 +3,13 @@ import tw from "twin.macro";
 import Button from "../ui/Button/button";
 import { FormControl, FormLabel } from "../ui/Form";
 import Input from "../ui/Input/input";
-import { FormResult } from "./schema/address.schema";
-import { useAddress } from "./use-address";
+import { Address } from "./schema/address.schema";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Text from "../ui/text";
+import { searchPost } from "@/utils/search_post";
 interface AddressForm {
-  onSubmit: (result: FormResult) => void;
+  onSubmit: (result: Address) => void;
 }
 
 export default function AddressForm({ onSubmit }: AddressForm) {
@@ -19,14 +19,14 @@ export default function AddressForm({ onSubmit }: AddressForm) {
     setValue,
     getValues,
     formState: { errors },
-  } = useForm<FormResult>({
-    resolver: zodResolver(FormResult),
+  } = useForm<Address>({
+    resolver: zodResolver(Address),
     mode: "all",
   });
 
   const values = getValues();
 
-  const { onSearch } = useAddress({
+  const { onSearch } = searchPost({
     onComplete: (data: PostData) => {
       setValue("roadNamecode", data.roadnameCode, { shouldValidate: true });
       setValue("roadAddress", data.roadAddress, { shouldValidate: true });
@@ -34,7 +34,7 @@ export default function AddressForm({ onSubmit }: AddressForm) {
   });
 
   const resolve: SubmitHandler<FieldValues> = (fields) => {
-    onSubmit(fields as FormResult);
+    onSubmit(fields as Address);
   };
 
   const isDisabled =

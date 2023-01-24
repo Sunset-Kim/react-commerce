@@ -11,7 +11,7 @@ export const Phone = z.string().regex(/^\d{10,11}$/, {
 });
 export type Phone = z.infer<typeof Phone>;
 
-export const FormResult = z
+export const Address = z
   .object({
     name: Name,
     phone: Phone,
@@ -20,4 +20,9 @@ export const FormResult = z
     detailAddress: z.string().optional(),
   })
   .required();
-export type FormResult = z.infer<typeof FormResult>;
+export type Address = z.infer<typeof Address>;
+
+export const AddressResponse = Address.extend({
+  id: z.string(),
+});
+export type AddressResponse = z.infer<typeof AddressResponse>;
