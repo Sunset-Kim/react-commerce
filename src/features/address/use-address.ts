@@ -5,21 +5,18 @@ interface PostAdress {
   roadnameCode: number;
 }
 
-export const useAddress = () => {
-  const [post, setPost] = useState<PostAdress>();
-
+export const useAddress = ({
+  onComplete,
+}: {
+  onComplete: (data: PostData) => void;
+}) => {
   const onSearch = () => {
     new window.daum.Postcode({
-      oncomplete: (data) => {
-        const { roadAddress, roadnameCode } = data;
-        setPost({ roadAddress, roadnameCode });
-      },
+      oncomplete: onComplete,
     }).open();
   };
 
   return {
-    roadAddress: post?.roadAddress,
-    roadnameCode: post?.roadnameCode,
     onSearch,
   };
 };
