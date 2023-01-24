@@ -1,4 +1,4 @@
-import CartClientService, { AuthError } from "./cart.client.service";
+import CartClientService from "./cart.client.service";
 import { cartCached } from "./query";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import FireBaseAuthService from "../auth/auth.client.service";
@@ -6,6 +6,7 @@ import { Firebase } from "../common/firebase";
 import { CartClient, MockCartClient } from "./cart.model";
 import { IProduct } from "../products";
 import { useLocation, useNavigate } from "react-router-dom";
+import { AuthError } from "../common";
 
 export const useCart = () => {
   const { pathname } = useLocation();

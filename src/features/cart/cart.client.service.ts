@@ -1,13 +1,7 @@
 import { IProduct } from "@/features/products";
 import { AuthService } from "../auth/auth.client.service";
+import { AuthError } from "../common";
 import CartModel from "./cart.model";
-export class AuthError extends Error {
-  constructor(message: string) {
-    super();
-    this.message = message;
-  }
-}
-
 export default class CartClientService {
   private _client: CartModel;
   private _auth: AuthService;
