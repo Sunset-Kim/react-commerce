@@ -9,6 +9,7 @@ import My from "@/pages/my";
 import MyHome from "@/pages/my/my-home";
 import Profile from "@/pages/my/profile";
 import PrivateRoute from "./private-route";
+import Address from "@/pages/my/address";
 
 const paths: RouteObject[] = [
   {
@@ -48,6 +49,10 @@ const paths: RouteObject[] = [
           {
             path: "profile",
             element: <Profile />,
+          },
+          {
+            path: "address",
+            element: <Address />,
           },
         ],
       },

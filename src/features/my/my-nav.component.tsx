@@ -30,7 +30,9 @@ export default function MyNav() {
           <ul>
             <li>구매내역</li>
             <li>판매내역</li>
-            <li>카트</li>
+            <li>
+              <Link to="cart">카트</Link>
+            </li>
           </ul>
         </div>
 
@@ -42,8 +44,12 @@ export default function MyNav() {
             <strong>내정보</strong>
           </Text>
           <ul>
-            <li>프로필 정보</li>
-            <li>배송지 관리</li>
+            <li>
+              <Link to="profile">프로필 정보</Link>
+            </li>
+            <li>
+              <Link to="address">배송지 관리</Link>
+            </li>
           </ul>
         </div>
       </Stack>
