@@ -3,7 +3,6 @@ import {
   deleteDoc,
   doc,
   Firestore,
-  getDoc,
   getDocs,
   query,
   setDoc,
@@ -38,8 +37,18 @@ export default class MemeberModel implements ServiceModel {
   }
 
   async add({ member }: { member: Member }) {
-    await setDoc(doc(this.db, this.COLLECTION_NAME, member.uid), member);
+    await setDoc(doc(this.db, this.COLLECTION_NAME, member.uid), {
+      ...member,
+      createdAt: Timestamp.now(),
+    });
     return;
+  }
+
+  async update({ member }: { member: Member }) {
+    await setDoc(doc(this.db, this.COLLECTION_NAME, member.uid), {
+      ...member,
+      updatedAt: Timestamp.now(),
+    });
   }
 
   async delete({ uid }: { uid: string }) {
