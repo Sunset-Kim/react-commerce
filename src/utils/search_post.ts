@@ -1,15 +1,8 @@
-import { ForwardedRef, useState } from "react";
-
-interface PostAdress {
-  roadAddress: string;
-  roadnameCode: number;
-}
-
-export const useAddress = ({
+export function searchPost({
   onComplete,
 }: {
   onComplete: (data: PostData) => void;
-}) => {
+}) {
   const onSearch = () => {
     new window.daum.Postcode({
       oncomplete: onComplete,
@@ -19,4 +12,4 @@ export const useAddress = ({
   return {
     onSearch,
   };
-};
+}
