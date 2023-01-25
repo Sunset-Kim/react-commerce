@@ -15,7 +15,7 @@ export const Address = z
   .object({
     name: Name,
     phone: Phone,
-    roadNamecode: z.number(),
+    roadNamecode: z.string(),
     roadAddress: z.string(),
     detailAddress: z.string().optional(),
   })

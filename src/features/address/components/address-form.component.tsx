@@ -1,18 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import tw from "twin.macro";
-import Button from "../ui/Button/button";
-import { FormControl, FormLabel } from "../ui/Form";
-import Input from "../ui/Input/input";
-import { Address } from "./schema/address.schema";
+import Button from "../../ui/Button/button";
+import { FormControl, FormLabel } from "../../ui/Form";
+import Input from "../../ui/Input/input";
+import { Address } from "../schema/address.schema";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Text from "../ui/text";
+import Text from "../../ui/text";
 import { searchPost } from "@/utils/search_post";
 interface AddressForm {
   onSubmit: (result: Address) => void;
 }
 
-export default function AddressForm({ onSubmit }: AddressForm) {
+export function AddressForm({ onSubmit }: AddressForm) {
   const {
     register,
     handleSubmit,
@@ -28,7 +28,9 @@ export default function AddressForm({ onSubmit }: AddressForm) {
 
   const { onSearch } = searchPost({
     onComplete: (data: PostData) => {
-      setValue("roadNamecode", data.roadnameCode, { shouldValidate: true });
+      setValue("roadNamecode", data.roadnameCode + "", {
+        shouldValidate: true,
+      });
       setValue("roadAddress", data.roadAddress, { shouldValidate: true });
     },
   });
@@ -36,6 +38,8 @@ export default function AddressForm({ onSubmit }: AddressForm) {
   const resolve: SubmitHandler<FieldValues> = (fields) => {
     onSubmit(fields as Address);
   };
+
+  console.log(errors);
 
   const isDisabled =
     !values.name ||

@@ -3,7 +3,7 @@ import { AuthError } from "../common";
 import AddressModel from "./address.model";
 import { Address, AddressResponse } from "./schema/address.schema";
 
-export default class AddressClientService {
+export class AddressClientService {
   private _client: AddressModel;
   private _auth: AuthService;
 

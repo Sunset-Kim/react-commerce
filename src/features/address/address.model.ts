@@ -14,7 +14,7 @@ import { DeleteAddress } from "./schema/delete-address.schema";
 import { UpdateAddress } from "./schema/update-address.schema";
 
 export default abstract class AddressModel implements ServiceModel {
-  abstract findAll({ uid }: { uid: string }): Promise<unknown>;
+  abstract findAll({ uid }: { uid: string }): Promise<AddressResponse[]>;
   abstract add({ uid, address }: AddAddress): Promise<unknown>;
   abstract update({ uid, id, address }: UpdateAddress): Promise<unknown>;
   abstract delete({ uid, id }: DeleteAddress): Promise<unknown>;
@@ -33,7 +33,12 @@ export class AddressClient implements AddressModel {
       collection(this.db, `members/${uid}/${this.COLLECTION_NAME}`)
     );
 
-    return querySnapshot.docs.map((doc) => doc.data() as AddressResponse);
+    return querySnapshot.docs.map((doc) => {
+      return {
+        id: doc.id,
+        ...doc.data(),
+      } as AddressResponse;
+    });
   }
 
   async add({ uid, address }: AddAddress) {
