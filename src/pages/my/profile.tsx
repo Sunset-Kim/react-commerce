@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import AddressForm from "@/features/address/address-form";
+import { AddressForm } from "@/features/address";
 import Text from "@/features/ui/text";
 import { useState } from "react";
 import tw from "twin.macro";

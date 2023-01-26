@@ -7,9 +7,9 @@ export default function Root() {
   return (
     <HeaderLayout header={<Header />}>
       <ProductsProvider>
-        <main className="container mx-auto max-w-[1280px] px-4 pt-20pxr">
+        <div className="container mx-auto h-full max-w-[1280px] px-4 pt-20pxr">
           <Outlet />
-        </main>
+        </div>
       </ProductsProvider>
     </HeaderLayout>
   );

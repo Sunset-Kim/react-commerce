@@ -6,7 +6,7 @@ import Text from "../ui/text";
 
 export default function MyNav() {
   return (
-    <div className="w-[180px]">
+    <div className="sticky top-16pxr w-[180px]">
       <Link to="/my">
         <Text
           as="h2"
@@ -31,7 +31,7 @@ export default function MyNav() {
             <li>구매내역</li>
             <li>판매내역</li>
             <li>
-              <Link to="cart">카트</Link>
+              <Link to="carts">카트</Link>
             </li>
           </ul>
         </div>

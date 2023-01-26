@@ -1,12 +1,10 @@
 import { useAuth } from "@/features/auth";
-import ScreenLoading from "@/features/ui/Loading/screen-loading";
+import { ScreenLoading } from "@/features/ui/Loading";
 import { PropsWithChildren, ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 
 export default function PrivateRoute({ children }: PropsWithChildren) {
   const { user, loading } = useAuth();
-
-  console.log(loading, user);
 
   if (loading) {
     return <ScreenLoading />;
