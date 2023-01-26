@@ -3,16 +3,25 @@ import { ElementType, HTMLAttributes, PropsWithChildren } from "react";
 import tw, { TwStyle } from "twin.macro";
 import styled from "@emotion/styled";
 
+type TextColor = "sky" | "red" | "green" | "default";
 type Size = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 type Weight = "300" | "400" | "500" | "600" | "700" | "800" | "900";
 
 const StyledText = styled.p``;
 interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
+  color?: TextColor;
   size?: Size;
   weight?: Weight;
   sx?: TwStyle;
   as?: ElementType<any>;
 }
+
+const colorStyle: { [color in TextColor]: TwStyle } = {
+  default: tw`text-stone-900`,
+  red: tw`text-red-400`,
+  sky: tw`text-sky-400`,
+  green: tw`text-green-400`,
+};
 
 const sizeStyle: { [size in Size]: TwStyle } = {
   xs: tw`text-xs`,
@@ -36,6 +45,7 @@ const fontWeightStyle: { [weight in Weight]: TwStyle } = {
 export default function Text({
   size = "md",
   weight = "400",
+  color = "default",
   children,
   sx,
   as,
@@ -43,7 +53,7 @@ export default function Text({
   return (
     <StyledText
       as={as}
-      css={[sizeStyle[size], fontWeightStyle[weight], sx]}
+      css={[sizeStyle[size], fontWeightStyle[weight], colorStyle[color], sx]}
     >
       {children}
     </StyledText>

@@ -2,7 +2,7 @@ import Stack, { StackProps } from "./stack";
 
 export default function HStack({
   direction = "row",
-  isDivder,
+  isDivider,
   sx,
   children,
   ...props
@@ -10,7 +10,7 @@ export default function HStack({
   return (
     <Stack
       direction={direction}
-      isDivder={isDivder}
+      isDivider={isDivider}
       sx={sx}
       {...props}
     >

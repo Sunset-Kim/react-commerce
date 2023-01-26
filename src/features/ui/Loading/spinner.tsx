@@ -13,7 +13,7 @@ const SIZE_MAP: Record<Size, TwStyle> = {
   xl: tw`h-80pxr w-80pxr`,
 };
 
-export default function Spinner({ size = "md" }: SpinnerProps) {
+export function Spinner({ size = "md" }: SpinnerProps) {
   return (
     <div
       className="text-center"

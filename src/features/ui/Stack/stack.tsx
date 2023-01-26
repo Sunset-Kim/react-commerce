@@ -18,12 +18,12 @@ export interface StackProps
     DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
   > {
   direction?: "row" | "column";
-  isDivder?: boolean;
+  isDivider?: boolean;
 }
 
 export default function Stack({
   children,
-  isDivder = false,
+  isDivider = false,
   direction = "column",
   sx,
 }: PropsWithChildren<StackProps>) {
@@ -33,7 +33,7 @@ export default function Stack({
 
   const clones = useMemo(() => {
     const validChildren = getValidChildren(children);
-    return !isDivder
+    return !isDivider
       ? validChildren
       : validChildren.map((child, index) => {
           const key = typeof child.key !== "undefined" ? child.key : index;

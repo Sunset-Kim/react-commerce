@@ -5,7 +5,7 @@ import Stack from "../ui/Stack/stack";
 export default function CartList({ children }: PropsWithChildren) {
   return (
     <Stack
-      isDivder
+      isDivider
       sx={tw`gap-20pxr`}
     >
       {children}

@@ -11,8 +11,8 @@ export default function NavLayout({
   children,
 }: PropsWithChildren<NavLayoutProps>) {
   return (
-    <div tw="flex">
-      {nav}
+    <div tw="flex h-full">
+      <div>{nav}</div>
       <div tw="flex-1">{children}</div>
     </div>
   );

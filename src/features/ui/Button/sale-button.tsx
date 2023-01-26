@@ -25,7 +25,7 @@ export default function SaleButton({
       color={isBuy ? "red" : "green"}
       variants="primary"
     >
-      <HStack isDivder>
+      <HStack isDivider>
         <div className="flex h-full w-full items-center justify-center px-2">
           <Text
             weight="700"

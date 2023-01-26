@@ -9,6 +9,9 @@ import My from "@/pages/my";
 import MyHome from "@/pages/my/my-home";
 import Profile from "@/pages/my/profile";
 import PrivateRoute from "./private-route";
+import Address from "@/pages/my/address";
+import { Suspense } from "react";
+import { Spinner } from "@/features/ui/Loading";
 
 const paths: RouteObject[] = [
   {
@@ -42,12 +45,46 @@ const paths: RouteObject[] = [
             element: <MyHome />,
           },
           {
-            path: "cart",
-            element: <Carts />,
+            path: "carts",
+            element: (
+              <Suspense
+                fallback={
+                  <div className="flex h-full items-center justify-center">
+                    <Spinner />
+                  </div>
+                }
+              >
+                <Carts />
+              </Suspense>
+            ),
           },
           {
             path: "profile",
-            element: <Profile />,
+            element: (
+              <Suspense
+                fallback={
+                  <div className="flex h-full items-center justify-center">
+                    <Spinner />
+                  </div>
+                }
+              >
+                <Profile />
+              </Suspense>
+            ),
+          },
+          {
+            path: "address",
+            element: (
+              <Suspense
+                fallback={
+                  <div className="flex h-full items-center justify-center">
+                    <Spinner />
+                  </div>
+                }
+              >
+                <Address />
+              </Suspense>
+            ),
           },
         ],
       },
