@@ -4,9 +4,9 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import FireBaseAuthService from "../auth/auth.client.service";
 import { Firebase } from "../common/firebase";
 import { CartClient, MockCartClient } from "./cart.model";
-import { IProduct } from "../products";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthError } from "../common";
+import { Product } from "../products/schema/product.schema";
 
 export const useCart = () => {
   const { pathname } = useLocation();
@@ -31,7 +31,7 @@ export const useCart = () => {
   };
 
   const { mutate: addCart } = useMutation(
-    (product: IProduct) => cartService.addCart(product),
+    (product: Product) => cartService.addCart(product),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(cartCached.getCartAll);
