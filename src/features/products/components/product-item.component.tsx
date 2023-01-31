@@ -1,12 +1,12 @@
 import { useCart } from "@/features/cart/use-cart";
 import { formatCurrency } from "@/features/fomatter";
 import Button from "@/features/ui/Button/button";
-import { Card } from "@/features/ui/Card";
+
 import { Link } from "react-router-dom";
-import { Category, IProduct } from "../types";
+import { Product } from "../schema/product.schema";
 
 interface ProductItemProps {
-  item: IProduct;
+  item: Product;
 }
 
 const BG_COLOR = ["bg-sky-50", "bg-red-50", "bg-purple-50", "bg-stone-100"];
@@ -16,7 +16,7 @@ function getRandomBgColor() {
 }
 
 export default function ProductItem({ item }: ProductItemProps) {
-  const { name, brand, category, image, price } = item;
+  const { name, brand, category, price } = item;
   const { addCart } = useCart();
   return (
     <li>
