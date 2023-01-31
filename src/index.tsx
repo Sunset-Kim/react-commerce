@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import router from "./routes/router";
 import { AuthProvider } from "./features/auth/auth.context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -30,6 +31,8 @@ root.render(
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
+
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>
 );
