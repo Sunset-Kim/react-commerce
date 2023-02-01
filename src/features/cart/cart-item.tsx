@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { getCloudImg } from "@/utils/get-cloud-img";
 import tw from "twin.macro";
 import { Product } from "../products/schema/product.schema";
 
@@ -18,13 +19,16 @@ export default function CartItem(props: CartItem) {
   const { product, onDelete, readonly = false } = props;
   const { id, name, brand, price } = product;
   return (
-    <HStack sx={tw`items-center`}>
-      <Link to={`/product/${id}`}>
+    <HStack sx={tw`w-full items-center`}>
+      <Link
+        sx={tw`flex-1`}
+        to={`/product/${id}`}
+      >
         <div className="mr-20pxr flex grow basis-[300px]">
           <div className="mr-16pxr w-100pxr rounded-lg bg-gray-50 ">
             <img
               className="aspect-square w-full object-cover object-center"
-              src={id}
+              src={getCloudImg(id)}
               alt={name}
             />
           </div>

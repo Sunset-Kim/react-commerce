@@ -17,6 +17,7 @@ import { IconShoppingCart } from "@tabler/icons-react";
 import Button from "@/features/ui/Button/button";
 import Link from "@/features/ui/Link";
 import { useCartConrol } from "@/features/cart";
+import { getCloudImg } from "@/utils/get-cloud-img";
 
 export default function ProductDetail() {
   const param = useParams();
@@ -42,7 +43,7 @@ export default function ProductDetail() {
           <img
             referrerPolicy="no-referrer"
             className="aspect-square w-full object-cover object-center"
-            src={productId}
+            src={getCloudImg(id)}
             alt={name}
           />
         </div>

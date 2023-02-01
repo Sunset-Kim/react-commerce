@@ -10,14 +10,12 @@ import {
   FilterList,
   FilterDescription,
   FilterTerm,
-  FilterSummary,
 } from "@/features/ui/Filter";
 
 import debug from "@/utils/debug";
 import { ChangeEvent } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "react-router-dom";
-import tw from "twin.macro";
 
 const log = debug("Page | products :");
 
@@ -37,7 +35,7 @@ export default function Products() {
   const {
     products: { data },
     categories: { data: categoriesData },
-  } = useProducts();
+  } = useProducts({ category: categories });
 
   if (!data || data.length === 0) {
     return <div>조건에 맞는 아이템이 없습니다</div>;
@@ -84,11 +82,6 @@ export default function Products() {
                 </ProductCategory>
               ))}
             </FilterDescription>
-          </FilterItem>
-
-          <FilterItem>
-            <FilterTerm>적용된 필터</FilterTerm>
-            <FilterDescription></FilterDescription>
           </FilterItem>
         </FilterList>
       </div>

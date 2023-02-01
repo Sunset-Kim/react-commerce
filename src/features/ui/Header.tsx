@@ -13,7 +13,7 @@ export default function header() {
       <div className="py-1">
         <ul className="flex items-center justify-end gap-2">
           <li>
-            <Link to="/my/cart">
+            <Link to="/my/carts">
               <IconShoppingBag size={20} />
             </Link>
           </li>

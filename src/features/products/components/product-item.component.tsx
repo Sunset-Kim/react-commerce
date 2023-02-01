@@ -2,6 +2,7 @@ import { useCartConrol } from "@/features/cart";
 import { formatCurrency } from "@/features/fomatter";
 import Button from "@/features/ui/Button/button";
 import Text from "@/features/ui/text";
+import { getCloudImg } from "@/utils/get-cloud-img";
 import { IconShoppingCart } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import tw from "twin.macro";
@@ -22,14 +23,13 @@ export default function ProductItem({ item }: ProductItemProps) {
   const { addCart } = useCartConrol();
   return (
     <li>
-      <Link to={"/products/1"}>
+      <Link to={`/products/${id}`}>
         <div
           className={`aspect-square w-full rounded-xl ${getRandomBgColor()} mb-2 shadow-sm`}
         >
-          {/* FIXME: 이미지 넣기 */}
           <picture className="w-full object-fill object-center">
             <img
-              src={`as`}
+              src={getCloudImg(id)}
               alt={name}
             />
           </picture>
