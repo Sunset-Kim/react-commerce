@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+# install
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```
+yarn install
+yarn dlx @yarnpkg/sdks vscode
+```
 
-## Available Scripts
+# 도전과제
+1. ui framwork 없이 tailwind 사용하여 재사용가능한 ui 컴포넌트를 만들기 
+2. [folder structure](https://profy.dev/article/react-folder-structure) 참고해서 폴더구조 사용해보기
+3. zod - react hook form 으로 사용하는 사용자 validation
+4. script로 삽입하는 cdn service를 typescript로 정의하기
+5. firebase admin sdk, node crawler를 활용한 no-sql base db 구조
+6. frontend layered architecture  
+7. 최신화된 tanstack query 사용
 
-In the project directory, you can run:
 
-### `yarn start`
+# 주요기능 정리
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## products
+- 상품필터링을 URLSearch param을 통해 history api를 사용할 수 있게 한다.
+<img width="320" alt="product" src="https://user-images.githubusercontent.com/77092632/216049510-aa86ad14-bf96-4c81-a51a-292f8ba70731.png" />
+<img width="320" alt="product1" src="https://user-images.githubusercontent.com/77092632/216049519-b6cfe80a-8ccd-4f60-9cab-7ff57e5494b5.png" />
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+> category=keyword 
 
-### `yarn test`
+## carts 
+- 상품을 카트에 추가/삭제 할 수 있다
+<img src="https://user-images.githubusercontent.com/77092632/216049314-80b1456c-71fd-40d8-a09c-2b57fda32329.png" width="320" alt="carts" />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## My
+- 개인정보 수정 및 배송정보를 추가 / 삭제할 수 있다.
+<img width="320" alt="my" src="https://user-images.githubusercontent.com/77092632/216049965-3bcdf2a2-0aa1-4c8f-8f49-a1522f3eed8e.png">
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Address
+- 주소를 추가 / 삭제 할 수 있다
+<img width="320" alt="address1" src="https://user-images.githubusercontent.com/77092632/216048938-827e5877-d02f-4419-b0ae-587d22890588.png"> 
+<img width="320" alt="address" src="https://user-images.githubusercontent.com/77092632/216048930-82ff12be-8951-4d64-8144-4a53b505bc27.png">
