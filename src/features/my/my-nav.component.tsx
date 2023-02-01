@@ -28,8 +28,6 @@ export default function MyNav() {
           </Text>
 
           <ul>
-            <li>구매내역</li>
-            <li>판매내역</li>
             <li>
               <Link to="carts">카트</Link>
             </li>

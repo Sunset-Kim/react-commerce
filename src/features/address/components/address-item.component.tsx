@@ -4,7 +4,7 @@ import Button from "@/features/ui/Button/button";
 import Stack from "@/features/ui/Stack/stack";
 import tw from "twin.macro";
 import { AddressResponse } from "../schema";
-import { useAddress } from "../use-address";
+import { useAddress } from "../hooks/use-address";
 
 interface AddressItemProps {
   address: AddressResponse;

@@ -1,7 +1,7 @@
-import { AuthService } from "../auth/auth.client.service";
-import { AuthError } from "../common";
+import { AuthService } from "../../auth/auth.client.service";
+import { AuthError } from "../../common";
 import AddressModel from "./address.model";
-import { Address, AddressResponse } from "./schema/address.schema";
+import { Address, AddressResponse } from "../schema/address.schema";
 
 export class AddressClientService {
   private _client: AddressModel;
