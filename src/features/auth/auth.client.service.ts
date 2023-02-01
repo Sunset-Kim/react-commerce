@@ -5,28 +5,24 @@ import {
   User,
   signOut as signOutFirebase,
 } from "firebase/auth";
-import { Timestamp } from "firebase/firestore/lite";
 import { Firebase } from "../common/firebase";
 import MemeberModel from "./member.model";
-
-export interface IUser {
-  uid: string;
-  name: string;
-  photoUrl: string;
-}
+import { Member } from "./schema/member.schema";
+import { CustomUser } from "./schema/user.schema";
 
 const RANDOM_PREFIX = ["기운찬", "따뜻한", "고운", "쿨한", "멋진"];
 const RANDOM_KEYWORD = ["고양이", "강아지", "곰", "호랑이", "사자", "기린"];
 
 export abstract class AuthService {
-  abstract get user(): IUser | null;
-  abstract set user(p: IUser | null);
+  abstract get user(): CustomUser | null;
+  abstract set user(p: CustomUser | null);
 
-  static convertUserFromFirebase(user: User): IUser {
-    const { uid, photoURL, displayName } = user;
+  static convertUserFromFirebase(user: User): CustomUser {
+    const { uid, photoURL, displayName, email } = user;
     const _user = {
       uid,
       photoUrl: photoURL ?? "",
+      email: email ?? undefined,
       name: displayName ?? AuthService.getRandomNickName(),
     };
 
@@ -43,7 +39,7 @@ export abstract class AuthService {
 }
 
 export default class FireBaseAuthService extends AuthService {
-  private _user: IUser | null = null;
+  private _user: CustomUser | null = null;
   private provider: GoogleAuthProvider;
   private memberModel: MemeberModel;
   auth: Auth;
@@ -74,8 +70,7 @@ export default class FireBaseAuthService extends AuthService {
         this.memberModel.add({
           member: {
             ...user,
-            createdAt: Timestamp.now(),
-            updatedAt: Timestamp.now(),
+            nickname: AuthService.getRandomNickName(),
           },
         });
       }
@@ -93,7 +88,7 @@ export default class FireBaseAuthService extends AuthService {
     return this._user;
   }
 
-  set user(user: IUser | null) {
+  set user(user: CustomUser | null) {
     this._user = user;
   }
 }

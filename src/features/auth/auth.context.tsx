@@ -1,9 +1,9 @@
 import { useFirebaseAuth } from "@/features/auth/use-firebase-auth";
-import { createContext, PropsWithChildren, useContext, useEffect } from "react";
-import type { IUser } from "./auth.client.service";
+import { createContext, PropsWithChildren, useContext } from "react";
+import { CustomUser } from "./schema/user.schema";
 
 interface IAuthContext {
-  user: IUser | null;
+  user: CustomUser | null;
   loading: boolean;
   signInWithGoogle: () => void;
   logout: () => void;
