@@ -21,17 +21,13 @@ const paths: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <HomePage />,
-      },
-      { path: "/login", element: <Login /> },
-      {
-        path: "/products",
         element: (
           <Suspense fallback={<>Loading</>}>
             <Products />
           </Suspense>
         ),
       },
+      { path: "/login", element: <Login /> },
       {
         path: "/products/:id",
         element: <ProductDetail />,
