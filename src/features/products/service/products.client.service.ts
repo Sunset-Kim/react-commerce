@@ -1,6 +1,7 @@
 import debug from "@/utils/debug";
 import { Category } from "../schema/category.schema";
 import { Product } from "../schema/product.schema";
+import { ProductsQuery } from "../schema/products.query.schema";
 
 import { IProductModel } from "./product.model";
 
@@ -18,14 +19,17 @@ export class ProdcutsClientService {
     return res;
   }
 
-  async getProducts({
-    category,
-    brand,
-  }: {
-    category?: Category;
-    brand?: string;
-  }): Promise<Product[]> {
+  async getProducts(options: ProductsQuery = {}): Promise<Product[]> {
+    const { category, brand } = options;
     const res = (await this.model.findAll({ category, brand })) as Product[];
     return res;
+  }
+
+  async getCategories(): Promise<(keyof Category)[]> {
+    return new Promise((resolve) =>
+      setTimeout(() => {
+        resolve(["clothes", "shoes"]);
+      }, 1000)
+    );
   }
 }

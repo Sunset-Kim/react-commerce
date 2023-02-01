@@ -3713,6 +3713,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tabler/icons-react@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "@tabler/icons-react@npm:2.1.2"
+  dependencies:
+    "@tabler/icons": 2.1.2
+    prop-types: ^15.7.2
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0
+  checksum: db776a5c4460fad8d67e31d7de7ce529f3a1ddaa646a223fee0470ff74d2a76c07c8bdb5249003806e930900c8227ee3241d374077c8c6f20386d147ae0228c9
+  languageName: node
+  linkType: hard
+
+"@tabler/icons@npm:2.1.2":
+  version: 2.1.2
+  resolution: "@tabler/icons@npm:2.1.2"
+  checksum: bce682e783c2c6cb27b3dc8bded11c2c003bc6afe4234487826d4b19790ff393b827027ff564bba5604a1b5092406a0fbb47f86171e391799155819881acd87b
+  languageName: node
+  linkType: hard
+
 "@tanstack/match-sorter-utils@npm:^8.7.0":
   version: 8.7.6
   resolution: "@tanstack/match-sorter-utils@npm:8.7.6"
@@ -12818,7 +12837,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.8.1":
+"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -13899,6 +13918,7 @@ __metadata:
     "@emotion/react": ^11.10.5
     "@emotion/styled": ^11.10.5
     "@hookform/resolvers": ^2.9.10
+    "@tabler/icons-react": ^2.1.2
     "@tanstack/react-query": ^4.22.0
     "@tanstack/react-query-devtools": ^4.24.4
     "@testing-library/jest-dom": ^5.16.5

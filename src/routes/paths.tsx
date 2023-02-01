@@ -26,7 +26,11 @@ const paths: RouteObject[] = [
       { path: "/login", element: <Login /> },
       {
         path: "/products",
-        element: <Products />,
+        element: (
+          <Suspense fallback={<>Loading</>}>
+            <Products />
+          </Suspense>
+        ),
       },
       {
         path: "/products/:id",

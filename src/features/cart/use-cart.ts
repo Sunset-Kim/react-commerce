@@ -19,7 +19,10 @@ export const useCart = () => {
   const mockCartClient = new MockCartClient();
   const cartService = new CartClientService(mockCartClient, auth);
 
-  const result = useQuery(cartCached.getCartAll, () => cartService.getCart());
+  const result = useQuery(cartCached.getCartAll, () => cartService.getCart(), {
+    staleTime: Infinity,
+    cacheTime: Infinity,
+  });
   const onError = (err: unknown) => {
     if (err instanceof AuthError) {
       navigate("/login", {

@@ -24,7 +24,7 @@ export default function Carts() {
       <CartList>
         {carts?.map((product) => (
           <CartItem
-            key={product.image}
+            key={product.id}
             product={product}
             onDelete={() => {
               deleteCart(product.name);

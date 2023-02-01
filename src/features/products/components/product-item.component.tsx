@@ -1,8 +1,10 @@
 import { useCart } from "@/features/cart/use-cart";
 import { formatCurrency } from "@/features/fomatter";
 import Button from "@/features/ui/Button/button";
-
+import Text from "@/features/ui/text";
+import { IconShoppingCart } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
+import tw from "twin.macro";
 import { Product } from "../schema/product.schema";
 
 interface ProductItemProps {
@@ -16,35 +18,60 @@ function getRandomBgColor() {
 }
 
 export default function ProductItem({ item }: ProductItemProps) {
-  const { name, brand, category, price } = item;
+  const { id, name, brand, category, price } = item;
   const { addCart } = useCart();
   return (
     <li>
       <Link to={"/products/1"}>
         <div
-          className={`aspect-square w-full rounded-md ${getRandomBgColor()} shadow-sm`}
+          className={`aspect-square w-full rounded-xl ${getRandomBgColor()} mb-2 shadow-sm`}
         >
           {/* FIXME: 이미지 넣기 */}
-          {/* <picture className="w-full object-fill object-center">
+          <picture className="w-full object-fill object-center">
             <img
-              src={image}
-              referrerPolicy="no-referrer"
+              src={`as`}
               alt={name}
             />
-          </picture> */}
+          </picture>
         </div>
 
-        <div>{brand}</div>
-        <div>{name}</div>
-        <div>{formatCurrency(price)}</div>
-        <div>{category}</div>
+        <div className="mb-2">
+          <Text
+            size="sm"
+            weight="500"
+          >
+            {brand}
+          </Text>
+          <Text
+            size="sm"
+            sx={tw`text-stone-500 mb-2`}
+          >
+            {name}
+          </Text>
+        </div>
       </Link>
-      <Button
-        color="green"
-        onClick={() => addCart(item)}
-      >
-        카트로
-      </Button>
+
+      <div className="mb-8 flex items-center justify-between">
+        <div>
+          <Text weight="700">{formatCurrency(price)}</Text>
+          <Text
+            size="xs"
+            sx={tw`text-stone-500`}
+          >
+            즉시 구매가
+          </Text>
+        </div>
+
+        <button
+          className="cursor-pointer rounded-full px-1 py-1 transition-colors hover:bg-sky-200/75"
+          onClick={() => addCart(item)}
+        >
+          <IconShoppingCart
+            size={18}
+            stroke={1}
+          />
+        </button>
+      </div>
     </li>
   );
 }

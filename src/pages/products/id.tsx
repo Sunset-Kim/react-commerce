@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import tw from "twin.macro";
-
-import { IProduct, useProduct } from "@/features/products";
 import Button from "@/features/ui/Button/button";
 import { Card } from "@/features/ui/Card";
 import Group from "@/features/ui/Group/group";
@@ -14,27 +12,12 @@ import HStack from "@/features/ui/Stack/h-stack";
 import SaleButton from "@/features/ui/Button/sale-button";
 
 export default function ProductDetail() {
-  const { productService } = useProduct();
-
   const param = useParams();
-  const [product, setProduct] = useState<IProduct>();
   const id = getValidParam({ param, field: "id" });
-
-  useEffect(() => {
-    if (id === undefined) return;
-
-    productService
-      .getProduct({ id })
-      .then((res) => setProduct(res as IProduct));
-  }, []);
-
-  if (product === undefined) {
-    return <div>하위</div>;
-  }
 
   return (
     <div className="flex gap-4">
-      <div className="flex-1">
+      {/* <div className="flex-1">
         <div className="w-full bg-sky-50">
           <img
             referrerPolicy="no-referrer"
@@ -70,7 +53,7 @@ export default function ProductDetail() {
         >
           <Text sx={tw`text-slate-800`}>관심상품 1,065</Text>
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 }

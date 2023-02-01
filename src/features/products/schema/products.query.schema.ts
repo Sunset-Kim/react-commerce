@@ -1,12 +1,13 @@
 import { z } from "zod";
+import { Brand } from "./brand.schema";
 import { Category } from "./category.schema";
 
-export const ProductQuery = z
+export const ProductsQuery = z
   .object({
     category: Category,
-    brand: z.string(),
+    brand: Brand,
   })
   .partial()
   .optional();
 
-export type ProductQuery = z.infer<typeof ProductQuery>;
+export type ProductsQuery = z.infer<typeof ProductsQuery>;

@@ -1,17 +1,15 @@
-import { Category } from "./schema/category.schema";
+import { ProductsQuery } from "./schema/products.query.schema";
 
+const CATEGORIES_KEY = "categoires";
 const PRODUCTS_KEY = "products";
 const PRODUCT_KEY = "product";
 
 export const productsCache = {
-  getAllProducts: [PRODUCTS_KEY],
-  getProducts: ({
-    category,
-    brand,
-  }: {
-    category?: Category;
-    brand?: string;
-  }) => [PRODUCTS_KEY, category ?? "all", brand ?? "all"],
+  getCategories: [CATEGORIES_KEY],
+  getProducts: (options: ProductsQuery = {}) => {
+    const { category, brand } = options;
+    return [PRODUCTS_KEY, { ...category } ?? "all", { ...brand } ?? "all"];
+  },
 
   getProdcutWithId: (id: string) => [PRODUCT_KEY, id],
 };
