@@ -6,8 +6,10 @@ import tw from "twin.macro";
 import { AddressResponse } from "../schema";
 import { useAddress } from "../hooks/use-address";
 import { useAddressControl } from "../hooks/use-address-control";
+import { UIProps } from "@/features/ui";
+import Text from "@/features/ui/text";
 
-interface AddressItemProps {
+interface AddressItemProps extends UIProps {
   address: AddressResponse;
 }
 
@@ -19,14 +21,14 @@ export function AddressItem(props: AddressItemProps) {
   const displayPhone = formatPrivateValue("phone", phone);
 
   return (
-    <Stack>
-      <div className="flex">
-        {displayName} <div>기본 배송지</div>
+    <Stack {...props}>
+      <div className="flex items-center">
+        <Text weight="700">{displayName}</Text>
       </div>
-      <div>{displayPhone}</div>
-      <div>
+      <Text size="sm">{displayPhone}</Text>
+      <Text size="sm">
         ({roadNamecode}){roadAddress}
-      </div>
+      </Text>
       <div className="mt-2 flex gap-2">
         <Button
           size="sm"

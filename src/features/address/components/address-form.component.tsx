@@ -53,6 +53,7 @@ export function AddressForm({ onSubmit }: AddressForm) {
     <form
       className="flex flex-col gap-4"
       onSubmit={handleSubmit(resolve)}
+      onClick={(e) => e.stopPropagation()}
     >
       <FormControl>
         <FormLabel>이름</FormLabel>
