@@ -3,35 +3,33 @@ import { Link } from "react-router-dom";
 import Button from "./Button/button";
 import Text from "./text";
 import { useAuth } from "../auth";
+import { IconLogout, IconPower, IconShoppingBag } from "@tabler/icons-react";
 
 export default function header() {
-  const { user, signInWithGoogle, logout } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <div className="mx-auto px-20pxr xl:px-40pxr">
       <div className="py-1">
-        <ul className="flex justify-end gap-2">
-          <li>고객센터</li>
-          <li>관심상품</li>
+        <ul className="flex items-center justify-end gap-2">
           <li>
-            <Link to="my">마이페이지</Link>
+            <Link to="/my/cart">
+              <IconShoppingBag size={20} />
+            </Link>
           </li>
-          {/* FIXME: 로그인 버튼 추가 */}
+
           <li>
             {user ? (
               <Button
-                variants="outlined"
+                sx={tw`bg-transparent px-0 py-0`}
                 onClick={logout}
               >
-                로그아웃
+                <IconLogout size={20} />
               </Button>
             ) : (
-              <Button
-                variants="outlined"
-                onClick={signInWithGoogle}
-              >
-                로그인
-              </Button>
+              <Link to="/login">
+                <IconPower size={20} />
+              </Link>
             )}
           </li>
         </ul>
@@ -41,12 +39,14 @@ export default function header() {
 
         <ul className="flex gap-20pxr">
           <li>
-            <Link to="/products">
+            <Link to="/">
               <Text>SHOP</Text>
             </Link>
           </li>
           <li>
-            <button>검색</button>
+            <Link to="/my">
+              <Text>MY</Text>
+            </Link>
           </li>
         </ul>
       </div>
