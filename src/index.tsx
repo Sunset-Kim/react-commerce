@@ -8,6 +8,7 @@ import router from "./routes/router";
 import { AuthProvider } from "./features/auth/auth.context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ProductsServiceProvider } from "./features/products";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -29,7 +30,9 @@ root.render(
     <GlobalStyles />
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <ProductsServiceProvider>
+          <RouterProvider router={router} />
+        </ProductsServiceProvider>
       </AuthProvider>
 
       <ReactQueryDevtools initialIsOpen={false} />

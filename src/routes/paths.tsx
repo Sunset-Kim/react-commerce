@@ -10,7 +10,7 @@ import Profile from "@/pages/my/profile";
 import PrivateRoute from "./private-route";
 import Address from "@/pages/my/address";
 import { Suspense } from "react";
-import { Spinner } from "@/features/ui/Loading";
+import { ScreenLoading, Spinner } from "@/features/ui/Loading";
 import Error500 from "@/features/ui/Errors/error-500";
 
 const paths: RouteObject[] = [
@@ -22,7 +22,7 @@ const paths: RouteObject[] = [
       {
         index: true,
         element: (
-          <Suspense fallback={<>Loading</>}>
+          <Suspense fallback={<ScreenLoading />}>
             <Products />
           </Suspense>
         ),

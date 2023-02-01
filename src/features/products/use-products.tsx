@@ -1,24 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import { Firebase } from "../common";
+
+import { useProductService } from "./product.context";
 import { productsCache } from "./products.query";
 import { ProductsQuery } from "./schema/products.query.schema";
-import {
-  ProdcutsClientService,
-  ProductMockModel,
-  ProductsModel,
-} from "./service";
+import { ProdcutsClientService, ProductMockModel } from "./service";
 
 export const useProducts = (params: ProductsQuery = {}) => {
+  const service = useProductService();
   const { category, brand } = params;
-  const firestore = Firebase.getInstance().FireStore;
-  const productsService = new ProdcutsClientService(
-    // new ProductsModel(firestore)
-    new ProductMockModel()
-  );
 
   const products = useQuery(
     productsCache.getProducts({ category, brand }),
-    () => productsService.getProducts({ category, brand }),
+    () => service.getProducts({ category, brand }),
     {
       staleTime: Infinity,
       cacheTime: Infinity,
@@ -27,7 +20,7 @@ export const useProducts = (params: ProductsQuery = {}) => {
 
   const categories = useQuery(
     productsCache.getCategories,
-    () => productsService.getCategories(),
+    () => service.getCategories(),
     {
       staleTime: Infinity,
       cacheTime: Infinity,

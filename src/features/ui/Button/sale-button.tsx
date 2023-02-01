@@ -27,17 +27,12 @@ export default function SaleButton({
     >
       <HStack isDivider>
         <div className="flex h-full w-full items-center justify-center px-2">
-          <Text
-            weight="700"
-            size="xl"
-          >
-            {isBuy ? "구매" : "판매"}
-          </Text>
+          <Text weight="500">{isBuy ? "구매" : "판매"}</Text>
         </div>
 
         <div className="px-2 py-2 text-left">
-          <p>{formatCurrency(price)}</p>
-          <Text size="xs">즉시구매가</Text>{" "}
+          <Text size="sm">{formatCurrency(price)}</Text>
+          <Text size="xs">{isBuy ? "즉시구매가" : "즉시판매가"}</Text>
         </div>
       </HStack>
     </Button>
