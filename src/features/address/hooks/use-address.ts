@@ -9,7 +9,6 @@ import { useAddressService } from "./address.context";
 export const useAddress = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const addressService = useAddressService();
 
   const onError = (err: unknown) => {
@@ -32,29 +31,7 @@ export const useAddress = () => {
     }
   );
 
-  const { mutate: addAddress } = useMutation(
-    (address: Address) => addressService.addAddress(address),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(addressCached.getAllAddress);
-      },
-      onError,
-    }
-  );
-
-  const { mutate: deleteAddress } = useMutation(
-    (id: string) => addressService.deleteAddress(id),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(addressCached.getAllAddress);
-      },
-      onError,
-    }
-  );
-
   return {
     ...result,
-    addAddress,
-    deleteAddress,
   };
 };

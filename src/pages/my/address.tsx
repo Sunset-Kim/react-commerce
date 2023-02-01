@@ -4,10 +4,12 @@ import Button from "@/features/ui/Button/button";
 import Text from "@/features/ui/text";
 import { AddressForm, AddressList, useAddress } from "@/features/address";
 import { useToggle } from "@/features/common/hooks";
+import { useAddressControl } from "@/features/address/hooks/use-address-control";
 
 export default function Adress() {
   const [isOpen, setToggle] = useToggle();
-  const { data, isLoading, addAddress } = useAddress();
+  const { data, isLoading } = useAddress();
+  const { addAddress } = useAddressControl();
 
   if (isLoading) {
     return <>로딩중</>;

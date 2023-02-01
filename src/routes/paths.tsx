@@ -35,9 +35,11 @@ const paths: RouteObject[] = [
       {
         path: "/my",
         element: (
-          <PrivateRoute>
-            <My />
-          </PrivateRoute>
+          <Suspense fallback={<ScreenLoading />}>
+            <PrivateRoute>
+              <My />
+            </PrivateRoute>
+          </Suspense>
         ),
         children: [
           {

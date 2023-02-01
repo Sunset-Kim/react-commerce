@@ -5,6 +5,7 @@ import Stack from "@/features/ui/Stack/stack";
 import tw from "twin.macro";
 import { AddressResponse } from "../schema";
 import { useAddress } from "../hooks/use-address";
+import { useAddressControl } from "../hooks/use-address-control";
 
 interface AddressItemProps {
   address: AddressResponse;
@@ -12,7 +13,7 @@ interface AddressItemProps {
 
 export function AddressItem(props: AddressItemProps) {
   const { id, name, phone, roadAddress, roadNamecode } = props.address;
-  const { deleteAddress } = useAddress();
+  const { deleteAddress } = useAddressControl();
 
   const displayName = formatPrivateValue("name", name);
   const displayPhone = formatPrivateValue("phone", phone);
