@@ -1,5 +1,4 @@
 import Carts from "@/pages/my/carts";
-import HomePage from "@/pages/home";
 import Login from "@/pages/login";
 import Products from "@/pages/products";
 import ProductDetail from "@/pages/products/id";
@@ -12,12 +11,13 @@ import PrivateRoute from "./private-route";
 import Address from "@/pages/my/address";
 import { Suspense } from "react";
 import { Spinner } from "@/features/ui/Loading";
+import Error500 from "@/features/ui/Errors/error-500";
 
 const paths: RouteObject[] = [
   {
     path: "/",
     element: <Root />,
-    errorElement: <div>not Found</div>,
+    errorElement: <Error500 />,
     children: [
       {
         index: true,

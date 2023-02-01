@@ -4,6 +4,7 @@ import ProductList from "@/features/products/components/product-list.component";
 import { Brand } from "@/features/products/schema/brand.schema";
 import { Category } from "@/features/products/schema/category.schema";
 import { useProducts } from "@/features/products/use-products";
+import Error500 from "@/features/ui/Errors/error-500";
 import {
   FilterItem,
   FilterList,
@@ -32,8 +33,6 @@ export default function Products() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const categories = watch("category");
-
-  console.log(categories);
 
   const {
     products: { data },
