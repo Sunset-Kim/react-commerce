@@ -1,6 +1,6 @@
-import { AuthService } from "../auth/auth.client.service";
-import { AuthError } from "../common";
-import type { Product } from "../products/schema/product.schema";
+import { AuthService } from "../../auth/auth.client.service";
+import { AuthError } from "../../common";
+import type { Product } from "../../products/schema/product.schema";
 import CartModel from "./cart.model";
 export default class CartClientService {
   private _client: CartModel;

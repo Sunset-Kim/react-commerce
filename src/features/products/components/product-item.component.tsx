@@ -1,4 +1,4 @@
-import { useCart } from "@/features/cart/use-cart";
+import { useCartConrol } from "@/features/cart";
 import { formatCurrency } from "@/features/fomatter";
 import Button from "@/features/ui/Button/button";
 import Text from "@/features/ui/text";
@@ -19,7 +19,7 @@ function getRandomBgColor() {
 
 export default function ProductItem({ item }: ProductItemProps) {
   const { id, name, brand, category, price } = item;
-  const { addCart } = useCart();
+  const { addCart } = useCartConrol();
   return (
     <li>
       <Link to={"/products/1"}>

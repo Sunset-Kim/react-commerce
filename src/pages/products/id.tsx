@@ -13,13 +13,14 @@ import Error500 from "@/features/ui/Errors/error-500";
 import { categoryMapper } from "@/constants/map/category_map";
 import { formatCurrency } from "@/features/fomatter";
 import { IconShoppingCart } from "@tabler/icons-react";
-import { useCart } from "@/features/cart/use-cart";
+
 import Button from "@/features/ui/Button/button";
 import Link from "@/features/ui/Link";
+import { useCartConrol } from "@/features/cart";
 
 export default function ProductDetail() {
   const param = useParams();
-  const { addCart } = useCart();
+  const { addCart } = useCartConrol();
   const id = getValidParam({ param, field: "id" });
 
   if (id === undefined) {

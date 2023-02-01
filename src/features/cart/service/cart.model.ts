@@ -1,16 +1,13 @@
+import { ServiceModel } from "@/features/common";
+import type { Product } from "@/features/products/schema/product.schema";
 import {
   Firestore,
   getDocs,
   doc,
-  query,
   collection,
-  where,
   setDoc,
   deleteDoc,
-  addDoc,
 } from "firebase/firestore/lite";
-import { ServiceModel } from "../common/model.type";
-import type { Product } from "../products/schema/product.schema";
 
 export default abstract class CartModel implements ServiceModel {
   abstract findAll({ uid }: { uid: string }): Promise<Product[]>;
