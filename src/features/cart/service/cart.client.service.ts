@@ -1,6 +1,6 @@
-import { IProduct } from "@/features/products";
-import { AuthService } from "../auth/auth.client.service";
-import { AuthError } from "../common";
+import { AuthService } from "../../auth/auth.client.service";
+import { AuthError } from "../../common";
+import type { Product } from "../../products/schema/product.schema";
 import CartModel from "./cart.model";
 export default class CartClientService {
   private _client: CartModel;
@@ -23,7 +23,7 @@ export default class CartClientService {
     return this._client.findAll({ uid });
   }
 
-  async addCart(product: IProduct) {
+  async addCart(product: Product) {
     const uid = this.getUserId();
     return this._client.add({ uid, product });
   }

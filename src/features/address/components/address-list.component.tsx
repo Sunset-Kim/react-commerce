@@ -11,8 +11,8 @@ interface AddressListProps {
 
 export function AddressList({ list }: PropsWithChildren<AddressListProps>) {
   return (
-    <Stack sx={tw`border-b-2 border-black pb-4`}>
-      {list.map((item) => (
+    <Stack sx={tw`border-b-2 border-black pb-4 gap-4`}>
+      {list.map((item, i) => (
         <AddressItem
           key={item.id}
           address={item}

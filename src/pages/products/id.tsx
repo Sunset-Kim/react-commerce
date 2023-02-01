@@ -1,36 +1,39 @@
 /** @jsxImportSource @emotion/react */
 import tw from "twin.macro";
-
-import { IProduct, useProduct } from "@/features/products";
-import Button from "@/features/ui/Button/button";
-import { Card } from "@/features/ui/Card";
-import Group from "@/features/ui/Group/group";
 import Stack from "@/features/ui/Stack/stack";
 import Text from "@/features/ui/text";
 import { getValidParam } from "@/utils/getVaildPram";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import HStack from "@/features/ui/Stack/h-stack";
+
+import { createSearchParams, useParams } from "react-router-dom";
+
 import SaleButton from "@/features/ui/Button/sale-button";
 
-export default function ProductDetail() {
-  const { productService } = useProduct();
+import { useProduct } from "@/features/products";
+import Error500 from "@/features/ui/Errors/error-500";
+import { categoryMapper } from "@/constants/map/category_map";
+import { formatCurrency } from "@/features/fomatter";
+import { IconShoppingCart } from "@tabler/icons-react";
 
+import Button from "@/features/ui/Button/button";
+import Link from "@/features/ui/Link";
+import { useCartConrol } from "@/features/cart";
+
+export default function ProductDetail() {
   const param = useParams();
-  const [product, setProduct] = useState<IProduct>();
+  const { addCart } = useCartConrol();
   const id = getValidParam({ param, field: "id" });
 
-  useEffect(() => {
-    if (id === undefined) return;
-
-    productService
-      .getProduct({ id })
-      .then((res) => setProduct(res as IProduct));
-  }, []);
-
-  if (product === undefined) {
-    return <div>하위</div>;
+  if (id === undefined) {
+    return <Error500 />;
   }
+
+  const { data: product, isError } = useProduct(id);
+
+  if (isError || !product) {
+    return <Error500 />;
+  }
+
+  const { brand, category, createdAt, id: productId, name, price } = product;
 
   return (
     <div className="flex gap-4">
@@ -39,37 +42,70 @@ export default function ProductDetail() {
           <img
             referrerPolicy="no-referrer"
             className="aspect-square w-full object-cover object-center"
-            src={product.image}
-            alt=""
+            src={productId}
+            alt={name}
           />
         </div>
       </div>
 
-      <div className="flex-1 border-l-2 pl-4">
-        <Group>
-          {product.brand}
-          <div className="text-center">{product.name}</div>
-        </Group>
+      <div className="flex-1 border-l pl-4">
+        <div className="mb-4">
+          <div className="mb-4">
+            <Link
+              to={{
+                pathname: "/",
+                search: createSearchParams({ category }).toString(),
+              }}
+              sx={tw`text-sm mb-1`}
+            >
+              {categoryMapper(category)}
+            </Link>
+            <Text weight="600">{brand}</Text>
+            <Text
+              size="sm"
+              sx={tw`text-stone-500`}
+            >
+              {name}
+            </Text>
+          </div>
 
-        <div>사이즈</div>
-        <div>최근거래가</div>
+          <dl>
+            <div className="mb-2 flex items-center justify-between border-b pb-2">
+              <dt className="text-xs">사이즈</dt>
+              <dd className="font-semibold">모든사이즈</dd>
+            </div>
+
+            <div className="mb-2 flex items-center justify-between pb-2">
+              <dt className="text-xs">최근거래가</dt>
+              <dd className="font-bold">{formatCurrency(price)}</dd>
+            </div>
+          </dl>
+        </div>
+
         <Stack sx={tw`gap-2 md:flex-row mb-4`}>
           <SaleButton
             role="buy"
-            price={165_000}
+            price={price}
           />
           <SaleButton
             role="sell"
-            price={165_000}
+            price={price * 0.8}
           />
         </Stack>
-
-        <Button
-          variants="outlined"
-          sx={tw`px-2 bg-white border-slate-200`}
-        >
-          <Text sx={tw`text-slate-800`}>관심상품 1,065</Text>
-        </Button>
+        <div>
+          <Button
+            variants="outlined"
+            sx={tw`text-sm`}
+            onClick={() => addCart(product)}
+          >
+            <IconShoppingCart
+              className="mr-1"
+              size={18}
+              stroke={1}
+            />
+            <Text>장바구니에 담기</Text>
+          </Button>
+        </div>
       </div>
     </div>
   );

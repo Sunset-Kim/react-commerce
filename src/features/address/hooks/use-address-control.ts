@@ -1,24 +1,15 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import FireBaseAuthService from "../auth/auth.client.service";
+import { AuthError } from "@/features/common";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
-import { AuthError, Firebase } from "../common";
-import { AddressClient } from "./address.model";
-import { AddressClientService } from "./address.client.service";
+import { Address } from "../schema";
+import { useAddressService } from "./address.context";
 import { addressCached } from "./address.query";
-import { Address } from "./schema";
 
-export const useAddress = () => {
+export const useAddressControl = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const auth = FireBaseAuthService.getInstance();
-
-  const addressModel = new AddressClient(Firebase.getInstance().FireStore);
-  const addressService = new AddressClientService(addressModel, auth);
-
-  const result = useQuery(addressCached.getAllAddress, () =>
-    addressService.getAddresses()
-  );
+  const addressService = useAddressService();
 
   const onError = (err: unknown) => {
     if (err instanceof AuthError) {
@@ -51,7 +42,6 @@ export const useAddress = () => {
   );
 
   return {
-    ...result,
     addAddress,
     deleteAddress,
   };

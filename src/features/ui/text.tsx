@@ -17,7 +17,7 @@ interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
 }
 
 const colorStyle: { [color in TextColor]: TwStyle } = {
-  default: tw`text-stone-900`,
+  default: tw`text-inherit`,
   red: tw`text-red-400`,
   sky: tw`text-sky-400`,
   green: tw`text-green-400`,

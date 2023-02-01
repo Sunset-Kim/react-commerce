@@ -10,14 +10,7 @@ import {
   where,
 } from "firebase/firestore/lite";
 import { ServiceModel } from "../common/model.type";
-import { IUser } from "./auth.client.service";
-
-interface Member extends IUser {
-  address?: string;
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
-}
-
+import { Member } from "./schema/member.schema";
 export default class MemeberModel implements ServiceModel {
   private db: Firestore;
   private COLLECTION_NAME = "members";

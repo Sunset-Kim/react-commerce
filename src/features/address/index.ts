@@ -1,5 +1,4 @@
 export * from "./components";
-export * from "./address.client.service";
-export * from "./address.model";
+export * from "./service";
 export * from "./schema";
-export * from "./use-address";
+export * from "./hooks";

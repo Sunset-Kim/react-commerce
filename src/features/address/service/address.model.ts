@@ -1,3 +1,4 @@
+import { ServiceModel } from "@/features/common";
 import {
   Firestore,
   getDocs,
@@ -7,11 +8,12 @@ import {
   deleteDoc,
   addDoc,
 } from "firebase/firestore/lite";
-import { AddressResponse } from "../address/schema/address.schema";
-import { ServiceModel } from "../common/model.type";
-import { AddAddress } from "./schema/add-address.schema";
-import { DeleteAddress } from "./schema/delete-address.schema";
-import { UpdateAddress } from "./schema/update-address.schema";
+import type {
+  AddAddress,
+  AddressResponse,
+  DeleteAddress,
+  UpdateAddress,
+} from "../schema";
 
 export default abstract class AddressModel implements ServiceModel {
   abstract findAll({ uid }: { uid: string }): Promise<AddressResponse[]>;

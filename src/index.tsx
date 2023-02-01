@@ -7,6 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 import router from "./routes/router";
 import { AuthProvider } from "./features/auth/auth.context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ProductsServiceProvider } from "./features/products";
+import { CartProvider } from "./features/cart/hooks/cart.context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -28,8 +31,14 @@ root.render(
     <GlobalStyles />
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <ProductsServiceProvider>
+          <CartProvider>
+            <RouterProvider router={router} />
+          </CartProvider>
+        </ProductsServiceProvider>
       </AuthProvider>
+
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>
 );

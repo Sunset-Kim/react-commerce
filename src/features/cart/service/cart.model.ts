@@ -1,25 +1,22 @@
+import { ServiceModel } from "@/features/common";
+import type { Product } from "@/features/products/schema/product.schema";
 import {
   Firestore,
   getDocs,
   doc,
-  query,
   collection,
-  where,
   setDoc,
   deleteDoc,
-  addDoc,
 } from "firebase/firestore/lite";
-import { ServiceModel } from "../common/model.type";
-import { IProduct } from "../products";
 
 export default abstract class CartModel implements ServiceModel {
-  abstract findAll({ uid }: { uid: string }): Promise<IProduct[]>;
+  abstract findAll({ uid }: { uid: string }): Promise<Product[]>;
   abstract add({
     uid,
     product,
   }: {
     uid: string;
-    product: IProduct;
+    product: Product;
   }): Promise<unknown>;
   abstract delete({
     uid,
@@ -38,15 +35,15 @@ export class CartClient implements CartModel {
     this.db = fireStore;
   }
 
-  async findAll({ uid }: { uid: string }): Promise<IProduct[]> {
+  async findAll({ uid }: { uid: string }): Promise<Product[]> {
     const querySnapshot = await getDocs(
       collection(this.db, `members/${uid}/${this.COLLECTION_NAME}`)
     );
 
-    return querySnapshot.docs.map((doc) => doc.data() as IProduct);
+    return querySnapshot.docs.map((doc) => doc.data() as Product);
   }
 
-  async add({ uid, product }: { uid: string; product: IProduct }) {
+  async add({ uid, product }: { uid: string; product: Product }) {
     return await setDoc(
       doc(this.db, `members/${uid}/${this.COLLECTION_NAME}/${product.name}`),
       product
@@ -63,14 +60,14 @@ export class CartClient implements CartModel {
 export class MockCartClient implements CartModel {
   constructor() {}
 
-  async findAll(): Promise<IProduct[]> {
+  async findAll(): Promise<Product[]> {
     const res = await fetch("/data/products.json");
     const result = await res.json();
 
     return result;
   }
 
-  async add(args: { uid: string; product: IProduct }): Promise<unknown> {
+  async add(args: { uid: string; product: Product }): Promise<unknown> {
     console.log("add", args);
     return;
   }

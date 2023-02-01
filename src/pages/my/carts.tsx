@@ -1,11 +1,13 @@
 import tw from "twin.macro";
 import CartItem from "@/features/cart/cart-item";
 import CartList from "@/features/cart/cart-list";
-import { useCart } from "@/features/cart/use-cart";
+
 import Text from "@/features/ui/text";
+import { useCart, useCartConrol } from "@/features/cart";
 
 export default function Carts() {
-  const { data: carts, deleteCart } = useCart();
+  const { data: carts } = useCart();
+  const { deleteCart } = useCartConrol();
 
   if (carts === undefined || carts.length === 0) {
     return <>상품이 없습니다</>;
@@ -24,7 +26,7 @@ export default function Carts() {
       <CartList>
         {carts?.map((product) => (
           <CartItem
-            key={product.image}
+            key={product.id}
             product={product}
             onDelete={() => {
               deleteCart(product.name);
